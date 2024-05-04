@@ -14,9 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const product_1 = __importDefault(require("../routes/product"));
 const user_1 = __importDefault(require("../routes/user"));
-const product_2 = require("./product");
 const user_2 = require("./user");
 class Server {
     constructor() {
@@ -33,7 +31,6 @@ class Server {
         });
     }
     routes() {
-        this.app.use('/api/products', product_1.default);
         this.app.use('/api/users', user_1.default);
     }
     midlewarse() {
@@ -45,7 +42,6 @@ class Server {
     dbConnect() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield product_2.Product.sync();
                 yield user_2.User.sync();
             }
             catch (error) {
